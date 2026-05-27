@@ -1,13 +1,13 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "queue",
-  "description": "Single-plugin marketplace for the queue plugin.",
+  "name": "wb-queue",
+  "description": "Single-plugin marketplace for the wb-queue plugin.",
   "owner": {
     "name": "William Bratches"
   },
   "plugins": [
     {
-      "name": "queue",
+      "name": "wb-queue",
       "description": "Queue follow-up tasks in Claude Code without interrupting the current turn. Each /queue <task> fires automatically as a new turn after Claude finishes, via a Stop hook.",
       "category": "workflow",
       "source": "./",

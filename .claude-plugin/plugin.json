@@ -1,6 +1,6 @@
 {
-  "name": "queue",
-  "version": "0.2.0",
+  "name": "wb-queue",
+  "version": "0.3.0",
   "description": "Queue follow-up tasks in Claude Code without interrupting the current turn. Each /queue <task> fires automatically as a new turn after Claude finishes, via a Stop hook.",
   "author": {
     "name": "William Bratches"

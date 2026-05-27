@@ -4,7 +4,7 @@ A Claude Code plugin that lets you queue follow-up tasks without interrupting th
 
 ## How it works
 
-- `/queue:add <task>` appends a task to a per-cwd queue on disk.
+- `/queue <task>` appends a task to a per-cwd queue on disk.
 - A `Stop` hook runs whenever Claude finishes a turn. If the queue is non-empty, it pops the next task and tells Claude to continue with it.
 - Tasks fire sequentially. The current turn is never interrupted — the next task waits until Claude has fully stopped.
 
@@ -12,7 +12,7 @@ A Claude Code plugin that lets you queue follow-up tasks without interrupting th
 
 ```bash
 claude plugin marketplace add williambratches-taptapsend/queue
-claude plugin install queue@queue
+claude plugin install wb-queue@wb-queue
 ```
 
 Restart your Claude Code session so the `Stop` hook loads.
@@ -20,12 +20,14 @@ Restart your Claude Code session so the `Stop` hook loads.
 ## Usage
 
 ```
-/queue:add summarize the diff
-/queue:add run the test suite
-/queue:list        # show pending tasks
-/queue:pop         # drop the next task without running it
-/queue:clear       # drop all tasks
+/queue summarize the diff
+/queue run the test suite
+/queue --list      # show pending tasks
+/queue --pop       # drop the next task without running it
+/queue --clear     # drop all tasks
 ```
+
+(Fully qualified form is `/wb-queue:queue`, but the shorter `/queue` resolves automatically as long as no other installed plugin defines a `queue` command.)
 
 Then ask Claude any normal question. When it finishes, you'll see:
 
@@ -40,7 +42,7 @@ Then ask Claude any normal question. When it finishes, you'll see:
 - **Tokens still spend.** Each queued task is a fresh turn. The hook fires at full turn completion (no interruption), but it does not save tokens.
 - **Per-cwd, not per-session.** Two Claude sessions in the same directory share a queue.
 - **Persistent.** Queued tasks survive across sessions. If you queue something and close Claude, it fires next time you open Claude in that cwd and complete a turn.
-- **No cancellation mid-fire.** Once a task starts, you can only stop it the normal way (interrupt the turn). Use `/queue:pop` or `/queue:clear` *before* it fires.
+- **No cancellation mid-fire.** Once a task starts, you can only stop it the normal way (interrupt the turn). Use `/queue --pop` or `/queue --clear` *before* it fires.
 
 ## Storage
 

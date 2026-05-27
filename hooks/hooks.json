@@ -1,0 +1,17 @@
+{
+  "description": "queue plugin: Stop hook fires the next queued task as a continuation",
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/queue-stop-hook.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

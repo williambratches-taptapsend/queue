@@ -15,6 +15,12 @@ claude plugin marketplace add williambratches-taptapsend/queue
 claude plugin install wb-queue@wb-queue
 ```
 
+The plugin command is `/wb-queue:queue`. To also get the plain `/queue` shortcut, install the user-level shim:
+
+```bash
+mkdir -p ~/.claude/commands && curl -fsSL https://raw.githubusercontent.com/williambratches-taptapsend/queue/main/shim/queue.md -o ~/.claude/commands/queue.md
+```
+
 Restart your Claude Code session so the `Stop` hook loads.
 
 ## Usage
